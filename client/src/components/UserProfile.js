@@ -5,7 +5,7 @@ import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import {Row,Col,Form ,Button} from 'react-bootstrap';
 import ProductCard from './ProductCard';
-import bangle from "../images/bangless.jpg"
+import bangle from "../images/lehengaa.jpg"
 import Typography from '@mui/material/Typography';
 const UserProfile=()=>{
     return(
