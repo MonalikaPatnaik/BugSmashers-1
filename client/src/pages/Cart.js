@@ -1,17 +1,16 @@
 import React from "react";
 import BreadCrumb from "../components/BreadCrumb";
 import Meta from "../components/Meta";
-import watch from "../images/watch.jpg";
+
 import { AiFillDelete } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import Container from "../components/Container";
-import tshirt from "../images/tshirt.jpg"
+
 
 const Cart = () => {
   return (
     <>
-      <Meta title={"Cart"} />
-      <BreadCrumb title="Cart" />
+     
       <Container class1="cart-wrapper home-wrapper-2 py-5">
         <div className="row">
           <div className="col-12">
@@ -24,12 +23,12 @@ const Cart = () => {
             <div className="cart-data py-3 mb-2 d-flex justify-content-between align-items-center">
               <div className="cart-col-1 gap-15 d-flex align-items-center">
                 <div className="w-25">
-                  <img src={tshirt} className="img-fluid" alt="product image" />
+                  <img src="https://nationaltoday.com/wp-content/uploads/2020/01/chocolatecake-1.jpg" className="img-fluid" alt="product image" />
                 </div>
                 <div className="w-75">
-                  <p>T-Shirt</p>
+                  <p>Cake</p>
                   <p>Size: M</p>
-                  <p>Color: Black</p>
+                  <p>Flavor: Choclate</p>
                 </div>
               </div>
               <div className="cart-col-2">

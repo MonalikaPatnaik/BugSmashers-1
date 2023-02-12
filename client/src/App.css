@@ -53,6 +53,13 @@
   
   padding: 10px;
 }
+.cart-wrapper{
+  background-color: #eae9ea;
+
+}
+.checkout-wrapper{
+  background-color: #eae9ea;
+}
 .form-label{
   margin-top:15px;
 }
