@@ -4,6 +4,7 @@ import BreadCrumb from "../components/BreadCrumb";
 import Container from "../components/Container";
 import CustomInput from "../components/CustomInput";
 
+
 const createStore = () => {
     return(
         <>
@@ -19,7 +20,8 @@ const createStore = () => {
                 
                 <CustomInput type="text" name="name" placeholder="Shop Name" />
                 <CustomInput type="text" name="category" placeholder="Category" />
-                <CustomInput type="file" name="Image" placeholder="Image"/>
+                
+                <CustomInput type="file" name="Image" label="Image" placeholder="Image"/>
                 
                 <div>
                   <div className="mt-3 d-flex justify-content-center gap-15 align-items-center">

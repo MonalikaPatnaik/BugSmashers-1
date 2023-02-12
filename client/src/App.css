@@ -450,7 +450,7 @@ footer .input-group-text {
 .contact-inner-wrapper {
   padding: 30px 20px;
   border-radius: 15px;
-  background-color: #F3CCFF;
+  background-color: #decaec;
   gap: 15px;
 }
 .contact-inner-wrapper > div {
@@ -526,10 +526,11 @@ footer .input-group-text {
   margin-top: 200px;
 }
 .auth-card{
-    padding: 20px;
+    padding: 10px;
     background-color: white;
     width: 500px;
     margin: 30px auto;
+    /* margin-top: 5px; */
     border-radius: 10px;
 
 }
@@ -791,7 +792,7 @@ footer .input-group-text {
 }
 .SignPage{
     background-color: #d7a9eb;
-    height:100vh;
+    height:120vh;
 }
 .chat{
     width:60px;
