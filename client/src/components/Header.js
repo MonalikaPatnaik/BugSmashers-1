@@ -8,9 +8,10 @@ import search from "../images/1.search.png";
 import Login from "../images/6.log-in.png";
 import help from "../images/5.help.png";
 import  location from "../images/9.location.png";
+import { useAuth0 } from "@auth0/auth0-react";
 const Header = () => {
   const[keyword,setKeyword]=useState("");
-
+  const { loginWithRedirect, isAuthenticated,logout } = useAuth0();
 
   const filter=()=>
   {
@@ -51,17 +52,29 @@ const Header = () => {
             
             <div className="col-5">
               <div className="header-upper-links d-flex align-items-center justify-content-between">
+                {isAuthenticated?(
                 <div>
-                  <Link
-                    to="/account"
-                    className="d-flex align-items-center gap-10 text-dark "
-                  >
-                    <img src={user} alt="Account" width={40}/>
+                <Link
+                  to="/account"
+                  className="d-flex align-items-center gap-10 text-dark "
+                >
+                  <img src={user} alt="Account" width={40}/>
+                  <p className="mb-0">
+                    My Account
+                  </p>
+                </Link>
+              </div>
+                ):(
+                  <div>
+                  <Link to="#" onClick={() => loginWithRedirect()}>
+                    <img src={Login} alt="Login"  width={40}/>
                     <p className="mb-0">
-                      My Account
+                      Log in
                     </p>
                   </Link>
                 </div>
+                )}
+                
                 <div>
                   <Link
                     to="/wishlist"
@@ -73,17 +86,7 @@ const Header = () => {
                     </p>
                   </Link>
                 </div>
-                <div>
-                  <Link 
-                    to="/login"
-                    className="d-flex align-items-center gap-10 text-dark"
-                  >
-                    <img src={Login} alt="Login"  width={40}/>
-                    <p className="mb-0">
-                      Log in
-                    </p>
-                  </Link>
-                </div>
+               
                 <div>
                   
                    

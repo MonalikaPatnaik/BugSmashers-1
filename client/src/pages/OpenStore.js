@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Meta from "../components/Meta";
 import BreadCrumb from "../components/BreadCrumb";
 import Container from "../components/Container";
-import createStore from '../pages/CreateStore';
+// import CreateStore from '../pages/CreateStore';
 
 const OpenStore = () => {
   return (

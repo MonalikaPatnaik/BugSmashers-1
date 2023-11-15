@@ -10,16 +10,12 @@ import OpenStore from "./pages/OpenStore";
 import CreateItem from "./pages/CreateItem";
 
 
-// import SingleBlog from "./pages/SingleBlog";
-
-
-
+// import SingleBlog from "./pages/SingleBlog
 import Wishlist from "./pages/Wishlist";
-import Login from "./pages/Login";
+
 import UserProfile from "./components/UserProfile"
 import Forgotpassword from "./pages/Forgotpassword";
-import Signup from "./pages/Signup";
-import Resetpassword from "./pages/Resetpassword";
+
 import SingleBlog from "./pages/SingleBlog";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import RefundPolicy from "./pages/RefundPolicy";
@@ -40,8 +36,7 @@ function App() {
       <BrowserRouter>
         <Routes>
         <Route path="/home" index element={<Landing/>}/>
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+        
           <Route path="/" element={<Layout/>}>
             <Route index element={<Home/>}/>
             <Route path="about" element={<About/>}/>
@@ -67,7 +62,6 @@ function App() {
             <Route path="forgot-password" element={<Forgotpassword />} />
           
             <Route path="createStore" element={<CreateStore/>} />
-            <Route path="reset-password" element={<Resetpassword />} />
             <Route path="account" element={<UserProfile/>} />
             <Route path="privacy-policy" element={<PrivacyPolicy />} />
             <Route path="refund-policy" element={<RefundPolicy />} />
