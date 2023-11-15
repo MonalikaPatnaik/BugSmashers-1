@@ -17,11 +17,7 @@ const shopSchema=new mongoose.Schema({
             type:Number,
             
         },
-        availability:{
-            type:String,
-            
-        },
-        Stock:{
+        stock:{
             type:Number
         },
         image:{

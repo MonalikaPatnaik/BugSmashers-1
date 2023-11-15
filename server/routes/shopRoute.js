@@ -2,7 +2,7 @@ const express=require("express");
 const { createShop, createItems, items, shops, deleteItem ,userShops } = require("../controllers/shopController");
 const router=express.Router();
 router.route("/createShop").post(createShop);
-router.route("/createItem").post(createItems);
+router.route("/createItems").post(createItems);
 router.route("/items/:id").get(items);
 router.route("/shops/user").get(userShops);
 router.route("/deleteItem").put(deleteItem);

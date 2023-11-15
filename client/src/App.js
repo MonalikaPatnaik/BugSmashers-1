@@ -53,7 +53,7 @@ function App() {
             <Route path="blogs" element={<Blog />} />
             <Route path="blog/:id" element={<SingleBlog />} />
            
-           <Route path="item"element={<CreateItem/>}></Route>
+           <Route path="createItems"element={<CreateItem/>}></Route>
             
             <Route path="checkout" element={<Checkout />} />
             

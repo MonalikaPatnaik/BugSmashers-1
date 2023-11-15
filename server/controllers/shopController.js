@@ -16,6 +16,7 @@ exports.createShop = catchAsyncErrors(async (req, res, next) => {
             console.log("No photo uploaded");
             return next(new ErrorHandler("No photo uploaded", 400));
         }
+        // console.log("error");
 
         const file = req.files.image;
 
@@ -65,14 +66,60 @@ exports.createItems=catchAsyncErrors(async(req,res,next)=>
     {
         return next(new ErrorHandler("Shop Not Found",404))
     }
-    const{name,price,availability,Stock}=req.body;
-    shop.items.push({name:name,price:price,availability:availability,Stock:Stock});
-    await shop.save();
-    const items=shop.items;
-    res.status(200).json({
-        success:true,
-        items
-    })
+    // const{name,price,availability,Stock}=req.body;
+    // shop.items.push({name:name,price:price,availability:availability,Stock:Stock});
+    // await shop.save();
+    // const items=shop.items;
+    // res.status(200).json({
+    //     success:true,
+    //     items
+    // })
+    try {
+        console.log("Request body:", req.body);
+        console.log("Before Cloudinary upload"); 
+        if (!req.files || !req.files.image) {
+            console.log("No photo uploaded");
+            return next(new ErrorHandler("No photo uploaded", 400));
+        }
+
+        const file = req.files.image;
+
+        cloudinary.uploader.upload(file.tempFilePath, async (result, err) => {
+            console.log("Inside Cloudinary upload callback");
+
+            if (err) {
+                console.error("Cloudinary upload error:", err.message || err);
+                return next(new ErrorHandler("Cloudinary upload error", 500));
+            }
+
+            if (!result || !result.secure_url) {
+                console.error("Unexpected Cloudinary response:", result);
+                return next(new ErrorHandler("Unexpected Cloudinary response", 500));
+            }
+
+            console.log("Cloudinary upload success. Image URL:", result.secure_url);
+
+            const { name, price, stock} = req.body;
+            shop.items.push({
+                name: name,
+                price: price,
+                stock: stock,
+                // location: req.user.location,
+                image: result.url,
+            });
+
+            console.log("Item added:", shop);
+            await shop.save();
+           const items= shop.items;
+            res.status(200).json({
+                success: true,
+               items,
+            });
+        });
+    } catch (error) {
+        console.error(error);
+        next(new ErrorHandler("Internal Server Error", 500));
+    }
 
 })
 exports.items=catchAsyncErrors(async(req,res,next)=>{
@@ -88,8 +135,8 @@ exports.items=catchAsyncErrors(async(req,res,next)=>{
     })
 })
 exports.userShops=catchAsyncErrors(async(req,res,next)=>{
-    console.log(req.user._id);
-    const shops=await Shop.find({user:req.user.sub.toString()});
+   const {user}=req.query;
+    const shops=await Shop.find({user:user});
     if(!shops)
     {
         return next(new ErrorHandler("Shop Not Found",404))

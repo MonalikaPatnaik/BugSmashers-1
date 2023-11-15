@@ -13,16 +13,7 @@ const CreateStore = () => {
     image: null, // Use null for the file
   });
   const { user, isAuthenticated, isLoading } = useAuth0();
-  // useEffect(() => {
-  //   if (user) {
-  //     const parsedUser = JSON.parse(user);
-  //     setFormData((prevData) => ({
-  //       ...prevData,
-  //       userEmail: parsedUser.email,
-  //     }));
-  //   }
-  // }, [user]);
-  // Event handler for form input changes
+
   const handleChange = (e) => {
     const { name, value, files } = e.target;
   

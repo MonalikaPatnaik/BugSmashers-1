@@ -18,7 +18,7 @@ const ExploreProducts = () => {
   return (
     <>
       <Meta title={"Our Store"} />
-      {/* <BreadCrumb title="Our Store" />
+      <BreadCrumb title="Our Store" />
       <Container class1="store-wrapper home-wrapper-2 py-5">
         <div className="row">
           <div className="col-3">
@@ -135,8 +135,8 @@ const ExploreProducts = () => {
                   </span>
                 </div>
               </div>
-            </div> */}
-            {/* <div className="filter-card mb-3">
+            </div>
+            <div className="filter-card mb-3">
               <h3 className="filter-title">Random Product</h3>
               <div>
                 <div className="random-products mb-3 d-flex">
@@ -187,8 +187,8 @@ const ExploreProducts = () => {
                   </div>
                 </div>
               </div>
-            </div> */}
-          {/* </div>
+            </div>
+          </div>
           <div className="col-9">
             <div className="filter-sort-grid mb-4">
               <div className="d-flex justify-content-between align-items-center">
@@ -254,17 +254,17 @@ const ExploreProducts = () => {
                 </div>
               </div>
             </div>
-            <div className="products-list pb-5"> */}
+            <div className="products-list pb-5">
               <div className="d-flex gap-10 flex-wrap">
                 <ProductCard grid={grid} />
               </div>
-            {/* </div>
+            </div>
           </div>
         </div>
-      </Container> */}
-      <div className="chat">
+      </Container>
+      {/* <div className="chat">
        
-       <Link to="/chatScreen" className="chatHead">Chat</Link> </div>
+       <Link to="/chatScreen" className="chatHead">Chat</Link> </div> */}
  
     </>
   );
