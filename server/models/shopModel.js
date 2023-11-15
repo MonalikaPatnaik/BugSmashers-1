@@ -5,8 +5,7 @@ const shopSchema=new mongoose.Schema({
         required:true
     },
     user:{
-        type:mongoose.Schema.ObjectId,
-        ref:"User",
+        type:String,
         required:true
     },
     items:[{
@@ -34,7 +33,11 @@ const shopSchema=new mongoose.Schema({
         type:String,
         required:true
     },
-    Image:{
+    image:{
+        type:String
+
+    },
+    user:{
         type:String
 
     },

@@ -1,6 +1,5 @@
 const express=require("express");
 const { createShop, createItems, items, shops, deleteItem ,userShops } = require("../controllers/shopController");
-const { isAuthenticated } = require("../middleware/auth");
 const router=express.Router();
 router.route("/createShop").post(createShop);
 router.route("/createItem").post(createItems);

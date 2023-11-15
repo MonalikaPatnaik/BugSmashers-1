@@ -2,36 +2,62 @@ const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const Shop=require("../models/shopModel");
 const ErrorHandler = require("../utils/errorHandler");
 const ApiFeatures=require("../utils/apiFeatures");
-const cloudinary=require('cloudinary').v2;
-cloudinary.config({
-    cloud_name:"dlgp2ufmn",
-    api_key:"738354633193825",
-    api_secret:"SzqyhWymF0CoH2bbDut25UzhTPQ"
-})
-exports.createShop=catchAsyncErrors(async(req,res,next)=>
-{
-    const file=req.files.photo;
-   
-    cloudinary.uploader.upload(file.tempFilePath,async(err,result)=>{
-        const{name,category}=req.body;
-        const shop=await Shop.create(
-         {
-             name:name,
-             category:category,
-             user:req.user._id,
-             location:req.user.location,
-             Image:result.url
-         }
-        )
-        res.status(200).json({
-         success:true,
-         shop
-        })
-        
-    })
+const cloudinary=require('cloudinary');
+cloudinary.v2.config({
+    cloud_name:"dv6yivx37",
+    api_key:"621242358315299",
+    api_secret:"iN9F4OJ5nuSlOs5nOtGk2K_7Wj0"
+});
+exports.createShop = catchAsyncErrors(async (req, res, next) => {
+    try {
+        console.log("Request body:", req.body);
+        console.log("Before Cloudinary upload"); 
+        if (!req.files || !req.files.image) {
+            console.log("No photo uploaded");
+            return next(new ErrorHandler("No photo uploaded", 400));
+        }
+
+        const file = req.files.image;
+
+        cloudinary.uploader.upload(file.tempFilePath, async (result, err) => {
+            console.log("Inside Cloudinary upload callback");
+
+            if (err) {
+                console.error("Cloudinary upload error:", err.message || err);
+                return next(new ErrorHandler("Cloudinary upload error", 500));
+            }
+
+            if (!result || !result.secure_url) {
+                console.error("Unexpected Cloudinary response:", result);
+                return next(new ErrorHandler("Unexpected Cloudinary response", 500));
+            }
+
+            console.log("Cloudinary upload success. Image URL:", result.secure_url);
+
+            const { name, category,user } = req.body;
+            const shop = await Shop.create({
+                name: name,
+                category: category,
+                user: user,
+                // location: req.user.location,
+                image: result.url,
+            });
+
+            console.log("Shop created:", shop);
+
+            res.status(200).json({
+                success: true,
+                shop,
+            });
+        });
+    } catch (error) {
+        console.error(error);
+        next(new ErrorHandler("Internal Server Error", 500));
+    }
+});
 
 
-})
+  
 exports.createItems=catchAsyncErrors(async(req,res,next)=>
 {
     const shop=await Shop.findById(req.query.shopId);
@@ -63,7 +89,7 @@ exports.items=catchAsyncErrors(async(req,res,next)=>{
 })
 exports.userShops=catchAsyncErrors(async(req,res,next)=>{
     console.log(req.user._id);
-    const shops=await Shop.find({user:req.user._id.toString()});
+    const shops=await Shop.find({user:req.user.sub.toString()});
     if(!shops)
     {
         return next(new ErrorHandler("Shop Not Found",404))
